@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
 from pycaret.regression import *
+from flask import Flask, request
 
 loaded_best_model = load_model('best-model')
 
@@ -12,6 +13,21 @@ class User_input(BaseModel):
     month: int
 
 app= FastAPI()
+
+apps = Flask(__name__)
+
+@apps.route('/foo')
+def serve_foo():
+    return 'This page is served via Flask!'
+
+@apps.route("/apipredict", methods=["POST"])
+def apiPredict():
+
+    req_data = request.get_json()
+    print(req_data)
+    return {'prediction': 21}
+
+apps.run(port=8888)
 
 @app.post('/predict')
 def get_forecast(input:User_input):
@@ -44,7 +60,7 @@ def main():
         """, unsafe_allow_html=True)
 
     category = st.selectbox('Category', ("Verkehrsunfälle","Alkoholunfälle","Fluchtunfälle"))
-    accident_type = st.selectbox('Accident Type', ("Insgesamt" ,"Verletzte und Getötete","Mit Personenschäden"))
+    accident_type = st.selectbox('Accident Type', ("insgesamt" ,"Verletzte und Getötete","mit Personenschäden"))
     year = st.slider("Year", 2000, 2024)
     month = st.slider("Month", 1, 12)
 
@@ -54,15 +70,11 @@ def main():
         "Year":[year],
         "Month":[month]
             })
-    
 
-    print(data)
     if st.button('Submit'):
 
         predicted_output = predict_model(loaded_best_model, data=data)
         predicted_val = predicted_output["prediction_label"].values[0]
-        print(predicted_val)
-
         st.write("Predicted values is: ",predicted_val)
 
 if __name__=='__main__':
