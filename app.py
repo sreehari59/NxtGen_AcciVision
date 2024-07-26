@@ -5,6 +5,7 @@ from pydantic import BaseModel
 import pandas as pd
 from pycaret.regression import *
 from flask import Flask, request
+from threading import Thread
 
 loaded_best_model = load_model('best-model')
 
@@ -27,7 +28,13 @@ def apiPredict():
     print(req_data)
     return {'prediction': 21}
 
-apps.run(port=8888)
+# Function to run Flask app
+def run_flask():
+    apps.run(port=8888, debug=True, use_reloader=False)
+
+# Start Flask in a separate thread
+flask_thread = Thread(target=run_flask)
+flask_thread.start()
 
 @app.post('/predict')
 def get_forecast(input:User_input):
