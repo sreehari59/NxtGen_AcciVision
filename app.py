@@ -14,16 +14,16 @@ class User_input(BaseModel):
 
 app= FastAPI()
 
-apps = Flask(__name__)
+# apps = Flask(__name__)
 
-@apps.route("/apipredict", methods=["POST"])
-def apiPredict():
+# @apps.route("/apipredict", methods=["POST"])
+# def apiPredict():
 
-    req_data = request.get_json()
-    print(req_data)
-    return {'prediction': 21}
+#     req_data = request.get_json()
+#     print(req_data)
+#     return {'prediction': 21}
 
-apps.run(port=8888)
+# apps.run(port=8888)
 
 @app.post('/predict')
 def get_forecast(input:User_input):
