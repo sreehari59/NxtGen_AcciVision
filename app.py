@@ -1,9 +1,11 @@
-import pickle 
+# https://nxtgenaccivision.streamlit.app/
 import streamlit as st
 from fastapi import FastAPI
 from pydantic import BaseModel
+import pandas as pd
+from pycaret.regression import *
 
-# model = pickle.load(open("model.pkl", "rb"))
+loaded_best_model = load_model('best-model')
 
 class User_input(BaseModel):
     year: int
@@ -17,8 +19,15 @@ def get_forecast(input:User_input):
         return {"Error": "Must be Valid input -> Month"}, 400
     else:
         print("Year:",input.year,"Month:",input.month)
-        predicted_value = 121
-        return {'prediction': predicted_value}
+        data = pd.DataFrame({
+            "Category":["Alkoholunfälle"],
+            "Accident_Type":["insgesamt"],
+            "Year":[input.year],
+            "Month":[input.month]
+                })
+        predicted_output = predict_model(loaded_best_model, data=data)
+        predicted_val = predicted_output["prediction_label"].values[0]
+        return {'prediction': predicted_val}
 
 
 def main():
@@ -38,9 +47,24 @@ def main():
     accident_type = st.selectbox('Accident Type', ("Insgesamt" ,"Verletzte und Getötete","Mit Personenschäden"))
     year = st.slider("Year", 2000, 2024)
     month = st.slider("Month", 1, 12)
+
+    data = pd.DataFrame({
+        "Category":[category],
+        "Accident_Type":[accident_type],
+        "Year":[year],
+        "Month":[month]
+            })
     
+
+    print(data)
     if st.button('Submit'):
-        print("Result is:")
+
+        predicted_output = predict_model(loaded_best_model, data=data)
+        predicted_val = predicted_output["prediction_label"].values[0]
+        print(predicted_val)
+
+        st.write("Predicted values is: ",predicted_val)
 
 if __name__=='__main__':
     main()
+
