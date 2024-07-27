@@ -6,7 +6,7 @@ NxtGen_AcciVision or Next Generation Accident Forecaster helps in forecasting th
 3. Mission 3: Post the URL to the endpoint
 
 ## Demo
-The application can be viewed in this link [link](https://nxtgenaccivision.streamlit.app/) or the API endpoint `sree1996.pythonanywhere.com` can be used to get the predictions.
+The application can be viewed in this [link](https://nxtgenaccivision.streamlit.app/) or the API endpoint `sree1996.pythonanywhere.com` can be used to get the predictions.
 Note: The endpoint only accepts a POST request with a JSON body
 ```
 {
@@ -39,13 +39,79 @@ To deploy the AI model [Streamlit Community Cloud](https://docs.streamlit.io/dep
 The final step was to post a request to the challenge endpoint with the a given body format.
 
 ## Tec Stack Used
-1. Flask
-2. streamlit
-3. pycaret
-4. pandas
+1. [Flask](https://flask.palletsprojects.com/en/3.0.x/)
+2. [streamlit](https://streamlit.io/)
+3. [pycaret](https://pycaret.org/)
+4. [pandas](https://pandas.pydata.org/)
+5. [numpy](https://numpy.org/)
+6. [matplotlib](https://matplotlib.org/)
+7. [seaborn](https://seaborn.pydata.org/)
+8. [scikit-learn](https://scikit-learn.org/stable/)
 
 ## EDA and Result
+In the EDA, visualization plots were created in order to understand the underlying pattern of the categories and accident types over the years.
+1. The below plot looks into the total number of different accidents type over the years 
+  <p align="center">
+    <img src="Images/Total_number_of_accidents_line.png" width="800" />
+  </p>
+  <p align="center">
+      <b>Total Number of accidents over the years</b> 
+  </p>
+  
+  <p align="center">
+    <img src="Images/Total_number_of_accidents_bar.png" width="800" />
+  </p>
+  <p align="center">
+      <b>Total Number of accidents over the years</b> 
+  </p>
 
+2. 
+   <p align="center">
+    <img src="Images/Number of category types and rows.png" width="800" />
+  </p>
+  <p align="center">
+      <b>Number of accidents with the respective category type</b> 
+  </p>
+
+3. 
+  <p align="center">
+    <img src="Images/Number of accident types and rows.png" width="800" />
+  </p>
+  <p align="center">
+      <b>Number of rows with the different accident type</b> 
+  </p>
+
+4. 
+  <p align="center">
+      <img src="Images/Total Alcohol accident over the months.png" width="800" />
+    </p>
+    <p align="center">
+        <b>Number of accidents due to Alkoholunfälle over the months</b> 
+  </p>
+
+5. 
+  <p align="center">
+    <img src="Images/Fluchtunfälle over the months.png" width="800" />
+  </p>
+  <p align="center">
+      <b>Number of accidents due to Fluchtunfälle over the months</b> 
+  </p>
+
+6. 
+  <p align="center">
+    <img src="Images/Verkehrsunfälle over the months.png" width="800" />
+  </p>
+  <p align="center">
+      <b>Number of Verkehrsunfälle due to Fluchtunfälle over the months</b> 
+  </p>
+
+Below table shows the evaluation metrics of the ML Models:
+
+| ML Model      | MAE                                          | MSE | 
+| Random Forest Regressor| 65.48 | 14786.62 |
+| Extra Trees Regressor | 63.51 | 14823.22 |
+| LightGBM | 74.59 | 15573.68 |
+| XGBoost | 73.53 | 16806.41 | 
 
 
 
