@@ -1,4 +1,3 @@
-# https://nxtgenaccivision.streamlit.app/
 import streamlit as st
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -14,18 +13,7 @@ class User_input(BaseModel):
 
 app= FastAPI()
 
-# apps = Flask(__name__)
-
-# @apps.route("/apipredict", methods=["POST"])
-# def apiPredict():
-
-#     req_data = request.get_json()
-#     print(req_data)
-#     return {'prediction': 21}
-
-# apps.run(port=8888)
-
-@app.post('/predict')
+@app.post('/apipredict')
 def get_forecast(input:User_input):
     if input.month not in range(1, 13):
         return {"Error": "Must be Valid input -> Month"}, 400
