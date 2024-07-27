@@ -65,7 +65,7 @@ In the EDA, visualization plots were created in order to understand the underlyi
       <b>Total Number of accidents over the years</b> 
   </p>
 
-2. 
+2. Number of accidents with the respective category type
    <p align="center">
     <img src="Images/Number of category types and rows.png" width="800" />
   </p>
@@ -73,7 +73,7 @@ In the EDA, visualization plots were created in order to understand the underlyi
       <b>Number of accidents with the respective category type</b> 
   </p>
 
-3. 
+3. Number of rows with the different accident type
   <p align="center">
     <img src="Images/Number of accident types and rows.png" width="800" />
   </p>
@@ -81,7 +81,7 @@ In the EDA, visualization plots were created in order to understand the underlyi
       <b>Number of rows with the different accident type</b> 
   </p>
 
-4. 
+4. This plot helps in understanding if there is a seasonality trend of number of accidents due to Alkoholunfälle over the months. 
   <p align="center">
       <img src="Images/Total Alcohol accident over the months.png" width="800" />
     </p>
@@ -89,7 +89,7 @@ In the EDA, visualization plots were created in order to understand the underlyi
         <b>Number of accidents due to Alkoholunfälle over the months</b> 
   </p>
 
-5. 
+5. This plot helps in understanding if there is a seasonality trend of number of accidents due to Fluchtunfälle over the months.
   <p align="center">
     <img src="Images/Fluchtunfälle over the months.png" width="800" />
   </p>
@@ -97,7 +97,7 @@ In the EDA, visualization plots were created in order to understand the underlyi
       <b>Number of accidents due to Fluchtunfälle over the months</b> 
   </p>
 
-6. 
+6. This plot helps in understanding if there is a pattern in number of accidents due to Verkehrsunfälle over the months. This plot is important since for instance there is a possibility of formation of black ice during winter thus increasing the risk of an accident.
   <p align="center">
     <img src="Images/Verkehrsunfälle over the months.png" width="800" />
   </p>
@@ -107,7 +107,8 @@ In the EDA, visualization plots were created in order to understand the underlyi
 
 Below table shows the evaluation metrics of the ML Models:
 
-| ML Model      | MAE                                          | MSE | 
+| ML Model      | MAE      | MSE | 
+|-----------------|---------------| ------ | 
 | Random Forest Regressor| 65.48 | 14786.62 |
 | Extra Trees Regressor | 63.51 | 14823.22 |
 | LightGBM | 74.59 | 15573.68 |
